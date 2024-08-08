@@ -10,6 +10,21 @@ const getAllMachines = async () => {
   }
 };
 
+const getMachineById = async (id) => {
+  try {
+    const machine = await db.Machine.findByPk(id, {
+      include: [{ model: db.Manufacturer, as: 'manufacturer' }],
+    });
+    if (!machine) {
+      throw new Error('Machine not found');
+    }
+    return machine;
+  } catch (err) {
+    throw new Error('Error fetching machine: ' + err.message);
+  }
+};
+
 module.exports = {
   getAllMachines,
+  getMachineById,
 };
