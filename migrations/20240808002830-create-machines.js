@@ -63,6 +63,16 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: true,
       },
+      opdb_img: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      opdb_img_width: {
+        type: Sequelize.INTEGER,
+      },
+      opdb_img_height: {
+        type: Sequelize.INTEGER,
+      },
       manufacturer_id: {
         type: Sequelize.INTEGER,
         references: {
@@ -76,12 +86,12 @@ module.exports = {
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
+        defaultValue: Sequelize.fn('NOW'),
       },
       updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
+        defaultValue: Sequelize.fn('NOW'),
       },
     });
   },

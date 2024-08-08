@@ -9,15 +9,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'manufacturer_id',
         as: 'manufacturer',
       });
-
-      Machine.hasMany(models.Image, {
-        foreignKey: 'imageable_id',
-        constraints: false,
-        scope: {
-          imageable_type: 'machine',
-        },
-        as: 'images',
-      });
     }
   }
 
@@ -37,6 +28,9 @@ module.exports = (sequelize, DataTypes) => {
       features: DataTypes.ARRAY(DataTypes.STRING),
       keywords: DataTypes.ARRAY(DataTypes.STRING),
       description: DataTypes.TEXT,
+      opdb_img: DataTypes.STRING,
+      opdb_img_width: DataTypes.INTEGER,
+      opdb_img_height: DataTypes.INTEGER,
     },
     {
       sequelize,
