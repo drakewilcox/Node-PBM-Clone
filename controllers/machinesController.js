@@ -17,3 +17,21 @@ exports.getMachineById = async (req, res) => {
     res.status(404).json({ error: err.message });
   }
 };
+
+exports.searchMachinesByName = async (req, res) => {
+  try {
+    console.log(req.query.q);
+    const searchQuery = req.query.q; // Get the search query from the query string
+    if (!searchQuery) {
+      return res.status(400).json({ message: 'Search query (q) is required' });
+    }
+
+    const machines = await machineService.searchMachinesByName(searchQuery);
+    if (machines.length === 0) {
+      return res.status(404).json({ message: 'No machines found' });
+    }
+    res.json(machines);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
